@@ -1,0 +1,21 @@
+---
+- hosts: prd_servers
+  become: yes
+  roles:
+    - common
+    - template_role
+    - template_role
+
+- hosts: stg_servers
+  become: yes
+  roles:
+    - common
+    - template_role
+    - template_role
+
+- hosts: dev_servers
+  become: yes
+  roles:
+    - common
+    - template_role
+    - template_role
