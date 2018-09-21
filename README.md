@@ -2,9 +2,9 @@
 
 # Directory Layout
 ```
-01_production                # inventory file for production servers
-02_staging                   # inventory file for staging environment
-03_development               # inventory file for staging environment
+01_production             # inventory file for production servers
+02_staging                # inventory file for staging environment
+03_development            # inventory file for staging environment
 
 group_vars/
    group1.yml             # here we assign variables to particular groups
