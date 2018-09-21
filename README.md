@@ -2,51 +2,58 @@
 
 # Directory Layout
 ```
-01_production             # inventory file for production servers
-02_staging                # inventory file for staging environment
-03_development            # inventory file for staging environment
+01_production             # プロダクション環境用インベントリーファイル
+02_staging                # ステージング環境用インベントリーファイル
+03_development            # 開発環境用インベントリーファイル
 
 group_vars/
-   group1.yml             # here we assign variables to particular groups
-   group2.yml
+   group1.yml             # インベントリーファイルで定義したグループに変数を割り当てる
+   group2.yml             # ファイル名 「{グループ名}.yml」
 host_vars/
-   hostname1.yml          # here we assign variables to particular systems
-   hostname2.yml
+   hostname1.yml          # インベントリーファイルで定義したホストに変数を割り当てる
+   hostname2.yml          # ファイル名 「{ホスト名}.yml」
 
-library/                  # if any custom modules, put them here (optional)
-module_utils/             # if any custom module_utils to support modules, put them here (optional)
-filter_plugins/           # if any custom filter plugins, put them here (optional)
+library/                  # カスタムモジュールを保存するディレクトリ (optional)
+module_utils/             # モジュールユーティリティを保存するディレクトリ (optional)
+filter_plugins/           # フィルタープラグインを保存するディレクトリ (optional)
 
-site.yml                  # master playbook
-tmp_servers.yml           # playbook for webserver tier
+site.yml                  # マスターのプレイブック
+tmp_servers.yml           # 「site.yml」から読み込まれるサーバーの役割ごとのプレイブック
 
 roles/
-    common/               # this hierarchy represents a "role"
+    common/               # "role"ごとのディレクトリ
         tasks/            #
-            main.yml      #  <-- tasks file can include smaller files if warranted
+            main.yml      #  <-- 実際に実行する処理を記載するファイル
         handlers/         #
-            main.yml      #  <-- handlers file
-        templates/        #  <-- files for use with the template resource
-            ntp.conf.j2   #  <------- templates end in .j2
+            main.yml      #  <-- "handlers" ファイル
+                          #      "handlers" : Task上で状態が変更されていた時に1回だけ実行されるジョブの仕組み
+        templates/        #  <-- "template" リソースで使用するためのファイル
+            ntp.conf.j2   #  <------- テンプレートは「.j2」拡張子で定義される
         files/            #
-            bar.txt       #  <-- files for use with the copy resource
-            foo.sh        #  <-- script files for use with the script resource
+            bar.txt       #  <-- "copy" リソースで使用するためのファイル
+            foo.sh        #  <-- "script" リソースで使用するためのスクリプトファイル
         vars/             #
-            main.yml      #  <-- variables associated with this role
+            main.yml      #  <-- この"role"に関連付けられている変数
         defaults/         #
             main.yml      #  <-- default lower priority variables for this role
         meta/             #
-            main.yml      #  <-- role dependencies
-        library/          # roles can also include custom modules
-        module_utils/     # roles can also include custom module_utils
-        lookup_plugins/   # or other types of plugins, like lookup in this case
+            main.yml      #  <-- "role"の依存関係を定義するファイル
+        library/          # "role"ごとに組み込むカスタムモジュールを保存するディレクトリ
+        module_utils/     # "role"ごとに組み込むモジュールユーティリティを保存するディレクトリ
+        lookup_plugins/   # "role"ごとに組み込む"lookup plugin"を保存するディレクトリ
 
-    template_role/        # same kind of structure as "common" was above, done for the other role
+    template_role/        # "common" と同じディレクトリ構造を持ったテンプレート
+                          # "role"を増やす場合は複製して使用。
 ```
 
 # Examples
 ```
+# 本番環境へのプレイブック実行
 ansible-playbook -i 01_production site.yml
+
+# ステージング環境へのプレイブック実行
 ansible-playbook -i 02_staging site.yml
+
+# 開発環境へのプレイブック実行
 ansible-playbook -i 03_development
 ```
