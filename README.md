@@ -33,9 +33,9 @@ roles/
             bar.txt       #  <-- "copy" リソースで使用するためのファイル
             foo.sh        #  <-- "script" リソースで使用するためのスクリプトファイル
         vars/             #
-            main.yml      #  <-- この"role"に関連付けられている変数
+            main.yml      #  <-- この"role"に関連付けられている変数(group_varsで上書き不可)
         defaults/         #
-            main.yml      #  <-- default lower priority variables for this role
+            main.yml      #  <-- この"role"に関連付けられている変数(group_varsで上書き可)
         meta/             #
             main.yml      #  <-- "role"の依存関係を定義するファイル
         library/          # "role"ごとに組み込むカスタムモジュールを保存するディレクトリ
