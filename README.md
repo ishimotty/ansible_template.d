@@ -72,11 +72,14 @@ roles/
 # Examples
 ```
 # 本番環境へのプレイブック実行
-ansible-playbook -i 01_production site.yml
+$ ansible-playbook -i 01_production site.yml --syntax-check
+$ ansible-playbook -i 01_production site.yml
 
 # ステージング環境へのプレイブック実行
-ansible-playbook -i 02_staging site.yml
+$ ansible-playbook -i 02_staging site.yml --syntax-check
+$ ansible-playbook -i 02_staging site.yml
 
 # 開発環境へのプレイブック実行
-ansible-playbook -i 03_development
+$ ansible-playbook -i 03_development site.yml --syntax-check
+$ ansible-playbook -i 03_development site.yml
 ```
