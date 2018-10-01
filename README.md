@@ -1,4 +1,27 @@
-# ansible_template.d
+# Welcome to ansible_template.d
+
+# What's ansible_template.d
+ansibleの公式ドキュメントを元にしたディレクトリテンプレートです。
+> https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
+
+# Getting Started
+1. ディレクトリ構成をgit cloneしローカル環境に配置します。
+```
+$ git clone https://github.com/ishimotty/ansible_template.d.git
+``` 
+
+2. 新規にgitリポジトリとして管理するために既存のgit情報を削除します。
+```
+$ cd ansible_template.d
+$ rm -rf .git
+```
+
+3. 新規に管理するgitリポジトリとしてgit initします。
+```
+$ git init
+$ git add .
+$ git commit -m "1st commit"
+```
 
 # Directory Layout
 ```
